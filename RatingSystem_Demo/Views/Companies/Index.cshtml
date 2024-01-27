@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RatingSystem_Demo.Models.CompanyModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4 class="text-uppercase text-center">List of companies</h4>
+
+<p style="float:right"><a asp-action="Create" class="btn btn-primary btn-md rounded-0"><i class="fa-solid fa-plus"></i> Add New</a></p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.f_iid)</th>
+            <th>@Html.DisplayNameFor(model => model.f_company_name)</th>
+            <th>@Html.DisplayNameFor(model => model.f_company_location)</th>
+            <th>@Html.DisplayNameFor(model => model.f_country)</th>
+            <th>@Html.DisplayNameFor(model => model.f_glassdoor_rating)</th>
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>@item.f_iid</td>
+            <td><a style="text-decoration:none" href="@Url.Action("Details","Companies", new { id = item.f_uid })">@item.f_company_name</a></td>
+            <td>@item.f_company_location</td>
+            <td>@item.f_country</td>
+            <td>                    
+                <span style="float:left;display:inline">@item.f_glassdoor_rating <span style="float:left;display:inline" class="rateYo"></span></span>
+            <td>
+                <a href="@Url.Action("Edit","Companies", new { id = item.f_uid })" class="btn btn-info btn-sm rounded-0"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="@Url.Action("Delete","Companies", new { id = item.f_uid })" class="btn btn-danger btn-sm rounded-0"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(function () {
+             var demoRatings = [@ViewBag.Ratings],          
+            stars = $('.rateYo');
+            for (var i = 0; i < stars.length; i++) {
+                $('.rateYo').eq(i).rateYo({ 
+                    rating: demoRatings[i],
+                    readOnly: true
+                });
+            }
+        });
+    </script>
+}
