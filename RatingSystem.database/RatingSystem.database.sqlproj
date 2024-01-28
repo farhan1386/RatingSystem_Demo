@@ -58,8 +58,14 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\t_company_rating.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateCompany.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCompanyById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAllCompanies.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteCompany.sql" />
+    <Build Include="dbo\Stored Procedures\spAddCompany.sql" />
   </ItemGroup>
 </Project>
